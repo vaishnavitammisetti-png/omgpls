@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Forever Us 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Dancing Script', cursive;
+text-align:center;
+background:linear-gradient(135deg,#ff69b4,#ff1493,#ffc0cb);
+background-size:400% 400%;
+animation:bgMove 10s ease infinite;
+color:white;
+overflow-x:hidden;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.page{display:none;min-height:100vh;padding:60px 20px;}
+.active{display:block;}
+
+.page-number{margin-bottom:20px;letter-spacing:3px;}
+
+h1{font-size:40px;text-shadow:0 0 15px white;}
+
+button{
+padding:15px 30px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff1493;
+cursor:pointer;
+margin:15px;
+box-shadow:0 0 20px white;
+}
+
+button:hover{transform:scale(1.15);}
+
+/* Envelope */
+.envelope{
+width:300px;
+height:200px;
+background:#ffe4ec;
+margin:40px auto;
+position:relative;
+border-radius:10px;
+cursor:pointer;
+box-shadow:0 0 30px white;
+}
+
+.flap{
+position:absolute;
+width:100%;
+height:100%;
+background:#ffc0cb;
+clip-path:polygon(0 0,100% 0,50% 60%);
+transform-origin:top;
+transition:0.6s;
+}
+
+.heart-seal{
+position:absolute;
+top:75px;
+left:135px;
+font-size:30px;
+}
+
+.paper{
+position:absolute;
+width:260px;
+background:white;
+color:#d1006f;
+padding:20px;
+border-radius:10px;
+top:20px;
+left:20px;
+transform:translateY(150px);
+opacity:0;
+transition:0.8s;
+}
+
+.envelope.open .flap{transform:rotateX(180deg);}
+.envelope.open .paper{
+transform:translateY(-120px);
+opacity:1;
+}
+
+/* Bouquet */
+.bouquet{
+margin:40px auto;
+width:300px;
+}
+
+.bouquet img{
+width:100%;
+}
+
+/* Gift */
+.gift{
+font-size:80px;
+margin:20px;
+cursor:pointer;
+display:inline-block;
+}
+
+.sparkle{
+position:fixed;
+font-size:25px;
+animation:explode 2s linear forwards;
+}
+
+@keyframes explode{
+0%{opacity:1;}
+100%{opacity:0;transform:translateY(-300px) scale(2);}
+}
+
+video{
+width:80%;
+margin-top:20px;
+border-radius:20px;
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+<div class="page-number">PAGE 1 / 4</div>
+<h1>Will you be mine forever? 💖</h1>
+<button onclick="showPage(2)">Yes 💘</button>
+<button onclick="moveNo()" id="noBtn">No 🙈</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+<div class="page-number">PAGE 2 / 4</div>
+<h1>Open Your Letter 💌</h1>
+
+<div class="envelope" onclick="this.classList.toggle('open')">
+<div class="flap"></div>
+<div class="heart-seal">💖</div>
+<div class="paper">
+My Love Rahul,<br><br>
+You are my comfort, my happiness, my forever person.<br><br>
+I choose you always.<br><br>
+Forever yours,<br>
+Vaishnavi 💕<br><br>
+<button onclick="showPage(3)">Next 🌹</button>
+</div>
+</div>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+<div class="page-number">PAGE 3 / 4</div>
+<h1>A Bouquet Just For You 🌹</h1>
+
+<div class="bouquet">
+<img src="https://i.imgur.com/4AiXzf8.png">
+</div>
+
+<p>My love blooms for you every single day 💖</p>
+
+<button onclick="showPage(4)">Open Gifts 🎁</button>
+</div>
+
+<!-- PAGE 4 -->
+<div id="page4" class="page">
+<div class="page-number">PAGE 4 / 4</div>
+<h1>Pick Any Gift 🎁</h1>
+
+<div class="gift" onclick="openGift()">🎁</div>
+<div class="gift" onclick="openGift()">🎁</div>
+<div class="gift" onclick="openGift()">🎁</div>
+
+<div id="videoBox" style="display:none;">
+<video controls>
+<source src="yourvideo.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+
+<script>
+
+function showPage(num){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById('page'+num).classList.add('active');
+}
+
+function moveNo(){
+let btn=document.getElementById("noBtn");
+btn.style.position="absolute";
+btn.style.left=Math.random()*window.innerWidth+"px";
+btn.style.top=Math.random()*window.innerHeight+"px";
+}
+
+function openGift(){
+for(let i=0;i<100;i++){
+let sp=document.createElement("div");
+sp.className="sparkle";
+sp.innerHTML="✨";
+sp.style.left=Math.random()*100+"vw";
+sp.style.top="80vh";
+document.body.appendChild(sp);
+setTimeout(()=>sp.remove(),2000);
+}
+document.getElementById("videoBox").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
